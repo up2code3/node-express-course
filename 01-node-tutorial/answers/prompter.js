@@ -1,6 +1,7 @@
 const http = require("http");
 var StringDecoder = require("string_decoder").StringDecoder;
 
+
 const getBody = (req, callback) => {
   const decode = new StringDecoder("utf-8");
   let body = "";
@@ -21,18 +22,26 @@ const getBody = (req, callback) => {
 };
 
 // here, you could declare one or more variables to store what comes back from the form.
-let item = "Enter something below.";
+let item = 'pick a color';
+let colorX = 'white';
 
 // here, you can change the form below to modify the input fields and what is displayed.
 // This is just ordinary html with string interpolation.
 const form = () => {
   return `
-  <body>
-  <p>${item}</p>
-  <form method="POST">
-  <input name="item"></input>
-  <button type="submit">Submit</button>
-  </form>
+  <body style='background-color: ${colorX}'>
+    <p>${item}</p>
+    <form method="POST">
+      <input name="item"  value='${item}'></input>
+      <select name='color' onChange='this.form.submit()'>
+        <option value='white' ${colorX === 'white' ? 'selected' : ''}>White</option>
+        <option value='green' ${colorX === 'green' ? 'selected' : ''}>Green</option>
+        <option value='blue' ${colorX === 'blue' ? 'selected' : ''}>Blue</option>
+        <option value='red' ${colorX === 'red' ? 'selected' : ''}>Red</option>
+        <option value='yellow' ${colorX === 'yellow' ? 'selected' : ''}>Yellow</option>
+      </select>
+      <button type="submit">Submit</button>
+    </form>
   </body>
   `;
 };
@@ -45,9 +54,12 @@ const server = http.createServer((req, res) => {
       console.log("The body of the post is ", body);
       // here, you can add your own logic
       if (body["item"]) {
-        item = body["item"];
+        item = body["color"];
       } else {
         item = "Nothing was entered.";
+      }
+      if (body['color']) {
+        colorX = body['color']
       }
       // Your code changes would end here
       res.writeHead(303, {
