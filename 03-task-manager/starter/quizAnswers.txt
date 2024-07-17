@@ -1,0 +1,6 @@
+1) Middleware are functions that have access to res/req objects and act as a pitstop between requests, responses, and sometimes next.
+2) Create Read Update Destroy (Destroy is so much cooler than delete)
+3-1) The secret info of the .env file file is accessed by calling process.env.VarName.
+3-2) you add .env to your git ignore file, and have the “dotenv” package installed in your “package json”.
+
+
