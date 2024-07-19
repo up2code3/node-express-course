@@ -149,10 +149,43 @@ object.behavior()
 const names = [
   'Dimitry SantiAgo',
   'Carlos d. Perez',
-  'tam  person',
-  'Mariana Gomez',
-  'Amy You'
+  'tam       person',
+  'Mariana gomez',
+  'amy you'
 ];
+
+//1
+const lastNameOnly = names.map((name) => {
+  const eachWord = name.split(' ')
+  const lastWord = eachWord.pop();
+  return lastWord;
+})
+console.log('Qustion 1 --> Last Name Only',lastNameOnly)
+//
+
+//2  
+const correctFormat = /^[a-zA-Z]+ [a-zA-Z]+$/
+const FilterResults = names.filter(name => correctFormat.test(name))
+console.log('Question 2 --> Has Correct Format', FilterResults)
+
+// //3
+const CapNames = FilterResults.map(name => {
+    return name.split(' ')
+    .map(word => word.charAt(0)
+    .toUpperCase() + 
+    word.slice(1)
+    .toLowerCase()).join(' ') 
+})
+console.log('Question 3 --> Capitalized First Letter', CapNames)
+
+//4  
+const TeamNoZ = CapNames.filter((name) => {
+  const trimName = name.trim();
+  const lastLetter = trimName.slice(-1).toLowerCase();
+  return lastLetter !== ' ' && lastLetter !== 'z'
+}).map((name) => `hey there ${name} You won 1800 free aol hours`)
+console.log('Question 4 --> No z names',TeamNoZ)
+
 
 ///////////////////////////////////////////////////////////////////////////////
 //// put your answers above if you wish to do the challenges on your own //////
