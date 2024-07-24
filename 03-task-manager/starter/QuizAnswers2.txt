@@ -1,0 +1,21 @@
+#1
+
+We brought in the async wrapper, because the try/catch blocks 
+in all of the controllers got redundant. 
+Now the errors get passed to the middleware and dealt with there.
+
+#2
+
+I think I get this? it was the same as the lesson right? or was this a trick question? lol
+
+const getTask = asyncWrapper(async (req, res, next) => {  
+  const { id: taskID } = req.params;  
+  const task = await Task.findOne({ _id: taskID });  
+  if (!task) {  
+
+// your code here --> return next(createCustomError(`${task} not found`, 404)) 
+
+  }  
+  res.status(200).json({ task });  
+});  
+
