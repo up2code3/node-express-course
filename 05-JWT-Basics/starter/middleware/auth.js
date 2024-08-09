@@ -15,7 +15,7 @@ const authenticationMiddleware = async (req, res, next) => {
     req.user = { id, username };
     next();
   } catch (error) {
-    throw new CustomAPIError("Not authorized to acess this route", 401);
+    throw new UnauthenticatedError("Not authorized to acess this route");
   }
 };
 
