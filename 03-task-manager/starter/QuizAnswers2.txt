@@ -1,0 +1,4 @@
+Q1 , I am not totally sure, I mean i know we put the try catch in it,
+so instead of having to do that for every request we could just wrap in
+the wrapper
+
